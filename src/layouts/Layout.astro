@@ -3,92 +3,115 @@ const { title } = Astro.props;
 ---
 
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>{title}</title>
-    <style is:global>
-      :root {
-        --bg: #0d1117;
-        --card: #161b22;
-        --border: #30363d;
-        --accent: #58a6ff;
-        --text: #c9d1d9;
+    <head>
+        <meta charset="UTF-8" />
+        <title>{title}</title>
+<style is:global>
+    :root {
+        /* --bg: #0d1117; */
+        /* --card: #161b22; */
+        /* --border: #30363d; */
+        /* --accent: #58a6ff; */
+        /* --text: #c9d1d9; */
         --bg: #1d2021;
         --card: #282828;
         --border: #504945;
         --accent: #98971a;
         --text: #ebdbb2;
-      }
+    }
 
-      body {
+    body {
         font-family: system-ui, sans-serif;
         background: var(--bg);
         color: var(--text);
         margin: 0;
-      }
+        background-image: radial-gradient(
+        rgba(152, 151, 26, 0.08) 1px,
+        transparent 1px
+    );
+    background-size: 40px 40px;
+    }
 
-      .container {
+    .container {
         max-width: 1300px;
-        margin: 40px auto;
-        padding: 0 20px;
-      }
+        margin: 0 auto;
+        padding: 40px 20px;
+    }
 
-      nav {
+    nav {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
         margin-bottom: 50px;
-      }
+    }
 
-      nav a {
+    nav a {
         margin-right: 25px;
         text-decoration: none;
         color: var(--accent);
         font-weight: 500;
-      }
+        position: relative
+    }
 
-      nav a:hover {
+    nav a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -4px;
+        width: 0%;
+        height: 2px;
+        background: var(--accent);
+        transition: width 0.2s ease;
+    }
+
+    nav a:hover::after {
+        width: 100%;
+    }
+    nav a:hover {
         opacity: 0.7;
-      }
+    }
 
-      h1 {
+    h1 {
         margin-bottom: 10px;
-      }
+    }
 
-      h2 {
+    h2 {
         margin-bottom: 30px;
         color: var(--accent);
-      }
+    }
 
-      .grid {
+    .grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
         gap: 30px;
-      }
+    }
 
-      .card {
+    .card {
         background: var(--card);
         border: 1px solid var(--border);
         border-radius: 12px;
         padding: 20px;
         transition: transform 0.2s ease, box-shadow 0.2s ease;
         margin-bottom: 20px;
-      }
+    }
 
-      .card:hover {
+    .card:hover {
         transform: translateY(-5px);
         box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-      }
+    }
 
-      .card img {
+    .card img {
         width: 100%;
         border-radius: 8px;
         margin-bottom: 15px;
         border: 1px solid var(--border);
-      }
+    }
 
-      .card h3 {
+    .card h3 {
         margin: 0 0 10px 0;
-      }
+    }
 
-      .tag {
+    .tag {
         display: inline-block;
         font-size: 0.8rem;
         padding: 4px 8px;
@@ -98,21 +121,107 @@ const { title } = Astro.props;
         background: #98971a30;
         border: 1px solid var(--border);
         color: var(--accent)
-      }
+    }
 
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <nav>
-        <a href="/">Home</a>
-        <a href="/education">Education</a>
-        <a href="/experience">Experience</a>
-        <a href="/projects">Projects</a>
-        <a href="/interests">Personal</a>
-      </nav>
+    .hero {
+        min-height: 80vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
 
-      <slot />
-    </div>
-  </body>
+    .hero-name {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 30px;
+        background: linear-gradient(90deg, var(--accent), #b8bb26);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .hero-card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 40px;
+        max-width: 650px;
+        backdrop-filter: blur(8px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+    }
+
+    .hero-role {
+        font-weight: 600;
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+        color: var(--accent);
+    }
+
+    .hero-desc {
+        margin-bottom: 30px;
+        line-height: 1.7;
+    }
+
+    .hero-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.2s ease;
+        border: 1px solid var(--border);
+    }
+
+    .btn.primary {
+        background: var(--accent);
+        color: var(--bg);
+        border: none;
+    }
+
+    .btn.primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    }
+
+    .btn.secondary {
+        color: var(--text);
+    }
+
+    .btn.secondary:hover {
+        background: #21262d;
+        transform: translateY(-2px);
+    }
+
+    @media (max-width: 600px) {
+        .hero-name {
+            font-size: 2.4rem;
+        }
+
+        .hero-card {
+            padding: 25px;
+        }
+    }
+
+</style>
+    </head>
+    <body>
+        <div class="container">
+            <nav>
+                <a href="/">Home</a>
+                <a href="/education">Education</a>
+                <a href="/experience">Experience</a>
+                <a href="/projects">Projects</a>
+                <!-- <a href="/interests">About me</a> -->
+            </nav>
+
+            <slot />
+        </div>
+    </body>
 </html>

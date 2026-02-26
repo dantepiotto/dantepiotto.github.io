@@ -3,10 +3,28 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Home">
-    <h1>Dante Piotto</h1>
-    <p>Automation Engineer | Control Systems | Robotics</p>
 
-    <p>
-        MSc in Automation Engineering focused on nonlinear control and multiphysics modelling.
-    </p>
+  <div class="hero">
+
+    <h1 class="hero-name">Dante Piotto</h1>
+
+    <div class="hero-card">
+      <p class="hero-role">
+        Automation Engineer | Control Systems | Robotics
+      </p>
+
+      <p class="hero-desc">
+        MSc in Automation Engineering focused on nonlinear control
+        and multiphysics modelling.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="/projects" class="btn primary">View Projects</a>
+        <a href="/experience" class="btn secondary">Experience</a>
+      </div>
+    </div>
+
+  </div>
+
+
 </Layout>
